@@ -1,0 +1,28 @@
+{
+  "name": "uc-blaze",
+  "private": true,
+  "scripts": {
+    "start": "meteor run --settings settings.json",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.23.6",
+    "@mapbox/node-pre-gyp": "^1.0.11",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.2",
+    "cron": "^3.1.7",
+    "fast-xml-parser": "^4.4.1",
+    "jquery": "^3.6.0",
+    "meteor-node-stubs": "^1.2.1",
+    "winston": "^3.11.0"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  }
+}

@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  blaze_80:
+    image: dhf0820/uc_blaze:240909.0  #dhf0820/uc_blaze:231110.1
+    environment:
+      LOGIN_BASE_URL: http://dev.vertisoft.com:30300/api/rest/v1/
+    ports:
+      - 80:3000
+    deploy:
+      replicas: 1
+    networks:
+      uc:
+networks:
+  uc:

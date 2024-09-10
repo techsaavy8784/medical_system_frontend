@@ -1,0 +1,99 @@
+<template name="DeviceSearchModal">
+    <div class="modal fade" id="DeviceSearchModal" tabindex="-1" aria-labelledby="DeviceSearchModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Search Device
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formFindDoc" class="row g-3 search-doc-form">
+                        <div class="row g-2">
+                            {{#if isAdmin}}
+                                <div class="col-6">
+                                    <label for="document-id" class="form-label">Resource ID</label>
+                                    <input
+                                            type="text"
+                                            name="resourceId"
+                                            class="form-control filter-id"
+                                            id="document-id"
+                                            placeholder=""
+                                    />
+                                </div>
+                            {{/if}}
+                            <div class="col-6">
+                                <label for="document-category" class="form-label">Category</label>
+                                <input
+                                        type="text"
+                                        name="category"
+                                        class="form-control filter-category"
+                                        id="document-category"
+                                        placeholder=""
+                                        disabled="{{canInputCategory}}"/>
+                                <!--                                        disabled="{{isResourceId}}"-->
+
+                            </div>
+                            <div class="col-6">
+                                <label for="document-category" class="form-label">Ref</label>
+                                <select name="categoryFilter" id="category-reference" class="form-select category-reference" disabled="{{canInputCategory}}">
+                                    {{#each deviceFilter 'Category'}}
+                                        <option value="{{name}}" selected>{{description}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <hr>
+                            <div class="col-6">
+                                <label for="type" class="form-label">Type</label>
+                                <input
+                                        type="text"
+                                        name="encounter"
+                                        class="form-control filter-encounter"
+                                        id="type"
+                                        placeholder=""
+                                        disabled="{{canInputType}}"
+                                />
+                            </div>
+                            <div class="col-6">
+                                <label for="document-category" class="form-label">Ref</label>
+                                <select name="codeFilter" id="type-reference" class="form-select category-reference" disabled="{{canInputType}}">
+                                    {{#each deviceFilter 'Code'}}
+                                        <option value="{{name}}" selected>{{description}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <label for="document-encounter" class="form-label">Encounter</label>
+                                <input
+                                        type="text"
+                                        name="encounter"
+                                        class="form-control filter-encounter"
+                                        id="document-encounter"
+                                        placeholder=""
+                                        disabled="{{isResourceId}}"
+                                />
+                            </div>
+                            <div class="col-6">
+                                <label for="filter-start-date" class="form-label"  >Start Date</label>
+                                <input type="date" name="startDate" id="filter-start-date" class="form-control filter-start-date" value="{{startDate}}" disabled="{{isResourceId}}">
+
+                            </div>
+                            <div class="col-6">
+                                <label for="filter-end-date" class="form-label">End Date</label>
+                                <input type="date" name="endDate" id="filter-end-date" class="form-control filter-end-date" value="{{endDate}}" disabled={{isResourceId}}>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 text-end">
+                            <button type="submit" class="btn btn-primary find-resource" data-bs-dismiss="modal">Search</button>
+                            <button class="btn btn-secondary reset">Reset</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

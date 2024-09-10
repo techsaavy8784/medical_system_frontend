@@ -1,0 +1,36 @@
+<template name="matchResourceModal">
+	<div class="modal fade" id="matchResourceModal" tabindex="-1" aria-labelledby="matchResourceModal" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h1 class="modal-title fs-5" id="saveResourceTitle">Select the Patient to Save {{selectedPendingResourceName}}</h1>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			  <div class="modal-body">
+				<div class="modal-content">
+				<table class="table text-center table-sm table-responsive table-hover datatable table-bordered">
+					<thead>
+						<th style="padding: 8px; border: none">Patient Name</th>
+						<th style="padding: 8px; border: none">Date Of Birth</th>
+						<th style="padding: 8px; border: none"></th>
+					</thead>
+					<tbody>
+					{{#each matchingPatientsData}}
+					<tr>
+						<td>{{patientName}}</td>
+						<td>{{resourceData.patient.birthDate}}</td>
+						<td><button class="btn btn-sm btn-primary accept-resource-update">Select</button></td>
+					</tr>
+					{{/each}}
+					</tbody>
+				</table>
+			</div>
+			  </div>
+<!--			<div class="modal-footer">-->
+<!--				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--				<button type="button" class="btn btn-primary btn-save-patient" data-bs-dismiss="modal">Save</button>-->
+<!--			</div>-->
+		  </div>
+		</div>
+	  </div>
+</template>

@@ -1,0 +1,51 @@
+<template name="pending">
+    <div class="card mt-5">
+        {{#if isUpdateLoading}}
+            <div class="d-flex fixed-center justify-content-center align-items-center h-100">
+                <div class="spinner-border font-size-5 text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        {{else}}
+            {{#if pendingData}}
+                <hr class="mt-0">
+                <section class="section">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="text-center">{{header}}</h1>
+                            <div class="card" style="border: none">
+                                <div class="card-body p-0">
+                                    <table class="table text-center table-sm table-responsive table-hover datatable table-bordered m-0">
+                                        <thead>
+                                        {{#each tableHeadings}}
+                                            <th style="padding: 8px;">{{b}}</th>
+                                        {{/each}}
+                                        <th colspan="2" style="padding: 8px;">Options</th>
+                                        </thead>
+                                        <tbody>
+
+                                        {{#each pendingData}}
+                                            {{#let index=@index}}
+                                                <tr style="cursor: pointer; vertical-align: middle;" class="textRawPatient">
+                                                    {{#each tableHeadings}}
+                                                        <td>{{getFieldData .. b}}</td>
+                                                    {{/each}}
+                                                    <td><button class="btn btn-sm btn-primary accept-update">Accept</button></td>
+                                                    <td><button class="btn btn-sm btn-danger reject-update" >Reject</button></td>
+                                                </tr>
+                                            {{/let}}
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {{/if}}
+        {{/if}}
+    </div>
+    {{> acceptPatientModal}}
+    {{> matchResourceModal}}
+    {{> acceptResourceModal}}
+</template>

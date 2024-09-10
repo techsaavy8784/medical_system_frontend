@@ -1,0 +1,15 @@
+{
+	"public": {
+		"ROOT_URL": "http://localhost:3000",
+		"LOGIN_BASE_URL": "http://universalcharts.com:30300/api/rest/v1/",
+		"CORE_URL": "http://dev.vertisoft.com:30300",
+		"VERSION_ID": "240909.0",
+		"TOTAL_PAGES": "3",
+		"METEOR_DISABLE_OPTIMISTIC_CACHING": "1",
+		"METEOR_PROFILE": "100",
+		"METEOR_ALLOW_SUPERUSER": "1"
+	},
+	"private": {
+		"MONGO_URL": "mongodb://localhost:27017/uc-blaze"
+	}
+}

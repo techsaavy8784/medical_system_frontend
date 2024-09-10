@@ -1,0 +1,29 @@
+
+version: "3.7"
+
+services:
+  uc-blaze_3000:
+    image: uc_blaze:${TAG}
+    build:
+      context: .
+      args:
+        TAG: ${TAG}
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - uc
+    #deploy:
+      #replicas: 1   
+      
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    command:
+      - --storageEngine=wiredTiger
+    networks:
+      - uc
+
+networks:
+  uc:

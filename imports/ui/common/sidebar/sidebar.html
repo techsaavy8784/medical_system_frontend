@@ -1,0 +1,126 @@
+<template name="sidebar">
+    <aside id="sidebar" class="sidebar mt-5">
+        <ul class="sidebar-nav " id="sidebar-nav-patient">
+          <li id="Resource Type">
+              <i class="bi bi-grid"></i>
+              <span>Resource Type</span>
+          </li>
+          
+          <li id="DocumentReference" name="documentReference" class="resource-item" style="{{getResourceStyle 'DocumentReference'}} cursor: pointer;">
+            <a class=" resource-type nav-link">
+              <i class="bi bi-menu-button-wide"></i><span>Document Reference</span>
+            </a>
+          </li>
+          
+          <li id="DiagnosticReport" name="diagnosticReport" class="resource-item" style="{{getResourceStyle 'DiagnosticReport'}} cursor: pointer;">
+            <a class=" resource-type nav-link" >
+              <i class="bi bi-journal-text"></i><span>Diagnostic Report</span>
+            </a>
+          </li>
+    
+          <li id="Observation" name="observation" class="resource-item" style="{{getResourceStyle 'Observation'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-layout-text-window-reverse"></i><span>Observation</span>
+            </a>
+          </li>
+
+          <li id="Condition" name="condition" class="resource-item" style="{{getResourceStyle 'Condition'}} cursor: pointer;">
+            <a class=" resource-type nav-link " >
+              <i class="bi bi-layout-text-window-reverse"></i><span>Condition</span>
+            </a>
+          </li>
+
+          <li id="Immunization" name="immunization" class="resource-item" style="{{getResourceStyle 'Immunization'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Immunization</span>
+            </a>
+    
+          </li>
+          
+          <li id="QuestionnaireResponse" name="questionnaireResponse" class="resource-item" style="{{getResourceStyle 'QuestionnaireResponse'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Questionnaire Response</span>
+            </a>
+          </li>
+
+          <li id="Procedures" name="procedures" class="resource-item" style="{{getResourceStyle 'Procedures'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Procedures</span>
+            </a>
+          </li>
+
+          <li id="Account" name="Account" class="resource-item" style="{{getResourceStyle 'Account'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Account</span>
+            </a>
+          </li>
+
+          <li id="AllergyIntolerance" name="AllergyIntolerance" class="resource-item" style="{{getResourceStyle 'AllergyIntolerance'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Allergy Intolerance</span>
+            </a>
+          </li>
+
+          <li id="CarePlan" name="CarePlan" class="resource-item" style="{{getResourceStyle 'CarePlan'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Care Plan</span>
+            </a>
+          </li>
+
+          <li id="CareTeam" name="CareTeam" class="resource-item" style="{{getResourceStyle 'CareTeam'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Care Team</span>
+            </a>
+          </li>
+
+          <li id="Coverage" name="Coverage" class="resource-item" style="{{getResourceStyle 'Coverage'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Coverage</span>
+            </a>
+          </li>
+
+          <li id="Device" name="Device" class="resource-item" style="{{getResourceStyle 'Device'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Device</span>
+            </a>
+          </li>
+
+          <li id="Encounter" name="Encounter" class="resource-item" style="{{getResourceStyle 'Encounter'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Encounter</span>
+            </a>
+          </li>
+
+          <li id="Goal" name="Goal" class="resource-item" style="{{getResourceStyle 'Goal'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Goal</span>
+            </a>
+          </li>
+
+          <li id="MedicationAdministration" name="MedicationAdministration" class="resource-item" style="{{getResourceStyle 'MedicationAdministration'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Medication Administration</span>
+            </a>
+          </li>
+
+          <li id="MedicationDispense" name="MedicationDispense" class="resource-item" style="{{getResourceStyle 'MedicationDispense'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Medication Dispense</span>
+            </a>
+          </li>
+
+          <li id="MedicationRequest" name="MedicationRequest" class="resource-item" style="{{getResourceStyle 'MedicationRequest'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Medication Request</span>
+            </a>
+          </li>
+
+          <li id="NutritionOrder" name="NutritionOrder" class="resource-item" style="{{getResourceStyle 'NutritionOrder'}} cursor: pointer;">
+            <a class=" resource-type nav-link ">
+              <i class="bi bi-bar-chart"></i><span>Nutrition Order</span>
+            </a>
+          </li>
+          
+        </ul>
+    </aside>
+</template>

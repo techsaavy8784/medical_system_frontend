@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  blaze_3000:
+    image: dhf0820/uc_blaze:240909.0
+    ports:
+      - 3000:3000
+    deploy:
+      replicas: 1
+
+    networks:
+      - uc
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    command:
+      - --storageEngine=wiredTiger
+    networks:
+      - uc
+
+networks:
+  uc:
+
+
+
+

@@ -1,0 +1,41 @@
+<template name="EncounterSaveModal">
+    <div class="modal fade" id="EncounterSaveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Save Encounter</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{#if showDocSaveModal}}
+                        <div class="col-xs-12">
+                            <label for="patientMrn" class="col-form-label" ><b>Patient MRN: </b>{{patientMrn}}</label>
+                        </div>
+                        <div class="col-xs-12">
+                            <label for="patientMrn" class="col-form-label" ><b>Patient ID: </b>{{patientID}}</label>
+                        </div>
+                        {{{saveDocModalData}}}
+                    {{else if showDocFhirModal }}
+                        <pre>
+                            {{fhirDocModalData}}
+                        </pre>
+                    {{else if showXMLModal}}
+                        {{#if emptyXmlData}}
+                            <h5>There is no to display</h5>
+                        {{else}}
+                            <pre style="white-space: pre-wrap; word-wrap: break-word;">
+                                {{docXMLModalData}}
+                            </pre>
+                        {{/if}}
+                    {{/if}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{#if showDocSaveModal}}
+                        <button type="button" class="btn btn-primary save-doc-data" data-bs-dismiss="modal">Save</button>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

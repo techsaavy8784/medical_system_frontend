@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+    gui:
+        image: uc_blaze:latest
+        #dhf0820/uc_blaze_dhf:231101.4
+        ports:
+            - "80:3000"
+        environment:
+            PORT: 3000
+            APP_SOURCE_FOLDER: /opt/src
+            ROOT_URL: ${APP_ROOT_URL:-http://universalcharts.com:80}
+            MONGO_URL: mongodb://mongo:27017/meteor
+            LOGIN_BASE_URL: "http://dev.vertisoft.com:30300/api/rest/v1/"
+            CORE_URL: " http://dev.vertisoft.com:30300"
+    mongo:
+        image: mongo:latest
+        command:
+            - --storageEngine=wiredTiger
+        ports:
+            - "27017:27017"
+        volumes:
+            - data:/data/db
+
+volumes:
+    data:

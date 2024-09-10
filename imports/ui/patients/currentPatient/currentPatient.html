@@ -1,0 +1,225 @@
+<template name="currentPatient">
+
+    {{> sidebar}}
+    {{#if currentPatientSelected}}
+      
+      {{#if isFindingDoc}}
+        <div
+          class="d-flex fixed-center justify-content-center align-items-center h-100" 
+        >
+          <div class="spinner-border font-size-5 text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      {{else}}
+        <main id="main" class="main mt-5" >
+          <!-- Table with stripped rows -->
+          <section class="section">
+          <div class="row">
+          <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Select Resource Type on Left</h5>
+                {{#if PatientsIsCaching}}
+                    <div class="progress" style="clear: both">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Downloading found documents records</div>
+                    </div>
+                {{/if}}
+              {{#if searchResult}}
+                <button class="btn btn-secondary btn-show-search-doc-modal">Search</button>
+                
+                {{#if emptySearchDocs}}
+                  {{#if executeFinding}}
+                  <h5>No results found for {{activeResourceType}}</h5>
+                  {{/if}}
+                {{else}}
+                {{#if isUpdatedResourceType}}
+                    {{#if displayPagination}}
+                        <nav aria-label="Page navigation" class="d-inline-block" style="float: right">
+                            <ul class="pagination pagination-sm justify-content-center">
+                                {{#if moreResourcePages}}
+                                    <li class="page-item" style="cursor: pointer">
+                                        <a class="page-link" data-value="{{multiPrevious}}" aria-label="Previous">&laquo;</a>
+                                    </li>
+                                    <li class="page-item" style="cursor: pointer">
+                                        <a class="page-link" data-value="{{previousResourcePage}}" aria-label="Previous">‹</a>
+                                    </li>
+                                {{/if}}
+                                {{#each totalPages}}
+                                    <li class="page-item {{selectedPage}}" style="cursor: pointer"><a class="page-link" data-value="{{this}}">{{this}}</a></li>
+                                {{/each}}
+                                {{#if moreResourcePages}}
+                                    <li class="page-item" style="cursor: pointer">
+                                        <a class="page-link" data-value="{{nextResourcePage}}" aria-label="Next">›</a>
+                                    </li>
+                                    <li class="page-item" style="cursor: pointer">
+                                        <a class="page-link" data-value="{{multiNextResource}}" aria-label="Next">&raquo;</a>
+                                    </li>
+                                    <h6 class="mt-2 mx-3">totalPages : <strong class="text-info-emphasis">{{totalPageNumbers}}</strong></h6>
+                                    <div class="d-flex flex-column align-items-center" style="max-width: 100px; margin-top: -21px">
+                                        <button class="btn btn-sm small btn-link goToPage" style="font-size: 12px">GO to Page</button>
+                                        <input class="form-control custom-page-number w-75 h-50" min="1" max="{{totalPageNumbers}}">
+                                    </div>
+
+                                {{/if}}
+                            </ul>
+                        </nav>
+                    {{/if}}
+                <table class="table text-center table-responsive table-sm table-hover datatable table-bordered">
+                    <thead>
+                    {{#each tableTitles}}
+                        <th style="padding: 8px; border: none">{{title}}</th>
+                    {{/each}}
+                    </thead>
+                  <tbody>
+                    {{#each currentPatientDocs}}
+                        {{#let index=@index}}
+                            <tr style="cursor: pointer" id="textRawDoc" class="textRawDocs">
+                                {{#each tableTitles}}
+                                    <td>{{getFieldData index fieldName}}</td>
+                                {{/each}}
+                                {{#if tableTitles}}
+                                    <td style="width: 185px">
+                                        <select  id="inputFindDoc_{{@index}}" class="form-select inputFindDoc p-0" >
+                                            <option selected5>
+                                                Select an Option
+                                            </option>
+                                            <option value="save-resource" disabled="{{isSaveDestSystemAllowed}}">Save to {{destSystemName}}</option>
+                                            <option>Show PDF</option>
+                                            <option>Show XML</option>
+                                            <option>Print</option>
+                                            <option>FHIR</option>
+                                        </select>
+
+                                    </td>
+                                {{/if}}
+                            </tr>
+                        {{/let}}
+                    {{/each}}
+
+                  </tbody>
+                </table>
+                {{else}}
+                    <table class="table datatable">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">text</th>
+                            <th scope="col">Options</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each currentPatientDocs}}
+                            <tr>
+                                <th scope="row">{{@index}}</th>
+                                <td>
+                                    <div id="textRawDoc" class="docDiv textRawDocs" >
+                                        {{{getTextDiv}}}
+                                    </div>
+                                </td>
+                                <td style="width: 185px">
+                                    <select  id="inputFindDoc_{{@index}}" class="form-select inputFindDoc" >
+                                        <option selected5>
+                                            Select an Option
+                                        </option>
+                                        <option value="save-resource" disabled="{{isSaveDestSystemAllowed}}">Save to {{destSystemName}}</option>
+                                        <option>Show PDF</option>
+                                        <option>Show XML</option>
+                                        <option>Print</option>
+                                        <option>FHIR</option>
+                                    </select>
+
+                                </td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                {{/if}}
+                {{/if}}
+              {{/if}}
+            </div>
+              {{#if searchResult}}
+                  {{#if displayPagination}}
+                      <nav aria-label="Page navigation" class="d-inline-block mt-3 mx-3">
+                          <ul class="pagination pagination-sm justify-content-end">
+                              {{#if moreResourcePages}}
+                                  <li class="page-item" style="cursor: pointer">
+                                      <a class="page-link" data-value="{{multiPrevious}}" aria-label="Previous">&laquo;</a>
+                                  </li>
+                                  <li class="page-item" style="cursor: pointer">
+                                      <a class="page-link" data-value="{{previousResourcePage}}" aria-label="Previous">‹</a>
+                                  </li>
+                              {{/if}}
+                              {{#each totalPages}}
+                                  <li class="page-item {{selectedPage}}" style="cursor: pointer"><a class="page-link" data-value="{{this}}">{{this}}</a></li>
+                              {{/each}}
+                              {{#if moreResourcePages}}
+                                  <li class="page-item" style="cursor: pointer">
+                                      <a class="page-link" data-value="{{nextResourcePage}}" aria-label="Next">›</a>
+                                  </li>
+                                  <li class="page-item" style="cursor: pointer">
+                                      <a class="page-link" data-value="{{multiNextResource}}" aria-label="Next">&raquo;</a>
+                                  </li>
+                                  <h6 class="mt-2 mx-3">totalPages : <strong class="text-info-emphasis">{{totalPageNumbers}}</strong></h6>
+                                  <div class="d-flex flex-column align-items-center" style="max-width: 100px; margin-top: -21px">
+                                      <button class="btn btn-sm small btn-link goToPage" style="font-size: 12px">GO to Page</button>
+                                      <input class="form-control custom-page-number w-75 h-50" min="1" max="{{totalPageNumbers}}">
+                                  </div>
+
+                              {{/if}}
+                          </ul>
+                      </nav>
+                  {{/if}}
+              {{/if}}
+          </div>
+          </div>
+          </div>
+          </section>
+        </main>
+      {{/if}}
+    {{/if}}
+    {{> SearchResourceModal}}
+    {{> DocumentReferenceSearchModal}}
+    {{> DocumentReferenceSaveModal}}
+    {{> DiagnosticReportSearchModal}}
+    {{> DiagnosticReportSaveModal}}
+    {{> ObservationSearchModal}}
+    {{> ObservationSaveModal}}
+    {{> ConditionSearchModal}}
+    {{> ConditionSaveModal}}
+    {{> ImmunizationSearchModal}}
+    {{> ImmunizationSaveModal}}
+    {{> QuestionnaireResponseSearchModal}}
+    {{> QuestionnaireResponseSaveModal}}
+    {{> ProceduresSearchModal}}
+    {{> ProceduresSaveModal}}
+    {{> AccountSearchModal}}
+    {{> AccountSaveModal}}
+    {{> AllergyIntoleranceSearchModal}}
+    {{> AllergyIntoleranceSaveModal}}
+    {{> CarePlanSearchModal}}
+    {{> CarePlanSaveModal}}
+    {{> CareTeamSearchModal}}
+    {{> CareTeamSaveModal}}
+    {{> CoverageSearchModal}}
+    {{> CoverageSaveModal}}
+    {{> DeviceSearchModal}}
+    {{> DeviceSaveModal}}
+    {{> EncounterSearchModal}}
+    {{> EncounterSaveModal}}
+    {{> GoalSearchModal}}
+    {{> GoalSaveModal}}
+    {{> MedicationAdministrationSearchModal}}
+    {{> MedicationAdministrationSaveModal}}
+    {{> MedicationDispenseSearchModal}}
+    {{> MedicationDispenseSaveModal}}
+    {{> MedicationRequestSearchModal}}
+    {{> MedicationRequestSaveModal}}
+    {{> NutritionOrderSearchModal}}
+    {{> NutritionOrderSaveModal}}
+    {{> pdfModal}}
+    {{> saveResourceModal}}
+    {{> patientMatchModal}}
+    {{> adjustFiltersModal}}
+</template>

@@ -1,0 +1,19 @@
+USER ?= dhf0820
+NS ?= dhf0820
+TAG ?= 141022
+TEST = dhf0820
+PROD = dhf0820
+VERSION ?= $(TAG)
+IMG_NAME ?= uc_blaze_dhf
+DOCKER_NAME=$(IMG_NAME)
+
+build:
+    #meteor build --directory $APP_BUNDLE_FOLDER --settings settings.json --server-only METEOR_DISABLE_OPTIMISTIC_CACHING=1 --architecture os.linux.x86_64
+	docker build -t $(TEST)/$(DOCKER_NAME):$(VERSION) -f Dockerfile.prod .
+
+push:	
+	docker push $(NS)/$(IMG_NAME):$(VERSION)
+
+docker:
+	docker build -t $(TEST)/$(DOCKER_NAME):$(VERSION) -f Dockerfile.prod .
+	docker push $(NS)/$(IMG_NAME):$(VERSION)

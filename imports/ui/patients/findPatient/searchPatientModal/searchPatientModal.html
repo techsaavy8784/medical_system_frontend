@@ -1,0 +1,220 @@
+<template name="searchPatientModal">
+	<div class="modal fade" id="searchPatientModal" tabindex="-1" aria-labelledby="searchPatientModal" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h1 class="modal-title fs-5" >Search Patient</h1>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+			<form id="formFindPatient" class="row g-3 search-patient-form">
+
+				<div class="col-6">
+					<div class="form-floating">
+						{{#if isUnique}}
+						<input
+							type="text"
+							name="lastName"
+							class="form-control"
+							id="findLastName"
+							placeholder="Last Name"
+							disabled
+						/>
+						{{else}}
+						<input
+							type="text"
+							name="lastName"
+							class="form-control"
+							id="findLastName"
+							placeholder="Last Name"
+
+						/>
+						{{/if}}
+						<label for="findLastName"
+							>
+							Family
+							</label
+						>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="form-floating">
+						{{#if isLastName}}
+						{{#if isUnique}}
+						<input
+							type="text"
+							name="firstName"
+							class="form-control"
+							id="findFirstName"
+							placeholder="First Name"
+							disabled
+						/>
+						{{else}}
+						<input
+							type="text"
+							name="firstName"
+							class="form-control"
+							id="findFirstName"
+							placeholder="First Name"
+						/>
+						{{/if}}
+						{{else}}
+						<input
+							type="text"
+							name="firstName"
+							class="form-control"
+							id="findFirstName"
+							placeholder="First Name"
+							disabled
+						/>
+						{{/if}}
+						<label for="findFirstName">
+							Given
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<div class="form-floating">
+						{{#if isLastName}}
+						{{#if isUnique}}
+						<input
+							id="birthday"
+							type="date"
+							name="birthday"
+							class="form-control"
+							disabled
+						/>
+						{{else}}
+						<input
+							id="birthday"
+							type="date"
+							name="birthday"
+							class="form-control"
+						/>
+						{{/if}}
+						{{else}}
+						<input
+							id="birthday"
+							type="date"
+							name="birthday"
+							class="form-control"
+							disabled
+						/>
+						{{/if}}
+						<label for="birthday" class="col-form-label"
+							>
+							DOB
+							</label
+						>
+					</div>
+				</div>
+				<div class="col-6">
+					<label for="document-category" class="form-label">Identifier</label>
+					<select name="identifier" id="identifier-value" class="form-select category-reference" disabled="{{canInputType}}">
+						{{#each patientFilters}}
+							<option value="{{name}}" selected>{{display}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<div class="col-6">
+					<label for="type" class="form-label">{{patientIdentifier.name}}</label>
+					<input
+							type="text"
+							name="encounter"
+							class="form-control filter-encounter"
+							id="type"
+							placeholder=""
+							disabled="{{canInputType}}"
+					/>
+				</div>
+<!--                <div class="col-6">-->
+<!--                    <div class="form-floating">-->
+<!--                        {{#if canInputId}}-->
+<!--                            <input-->
+<!--                                    type="text"-->
+<!--                                    name="patientId"-->
+<!--                                    class="form-control"-->
+<!--                                    id="patient-id"-->
+<!--                                    placeholder="Patient ID"-->
+<!--                            />-->
+<!--                        {{else}}-->
+<!--                            <input-->
+<!--                                    type="text"-->
+<!--                                    name="patientId"-->
+<!--                                    class="form-control"-->
+<!--                                    id="patient-id"-->
+<!--                                    placeholder="Patient ID"-->
+<!--                                    disabled-->
+<!--                            />-->
+<!--                        {{/if}}-->
+<!--                        <label for="patient-id"-->
+<!--                        >Patient ID</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-6">-->
+<!--                    <div class="form-floating">-->
+<!--                        {{#if canInputMrn}}-->
+<!--                            <input-->
+<!--                                    type="text"-->
+<!--                                    name="patientMrn"-->
+<!--                                    class="form-control"-->
+<!--                                    id="patient-mrn"-->
+<!--                                    placeholder="Medical Record Number"-->
+<!--                            />-->
+<!--                        {{else}}-->
+
+<!--                            <input-->
+<!--                                    type="text"-->
+<!--                                    name="patientMrn"-->
+<!--                                    class="form-control"-->
+<!--                                    id="patient-mrn"-->
+<!--                                    placeholder="Medical Record Number"-->
+<!--                                    disabled-->
+<!--                            />-->
+<!--                        {{/if}}-->
+<!--                        <label for="patient-mrn"-->
+<!--                        >Medical Record Number</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+				<div class="col-xs-12">
+					<div class="col-xs-6 text-end">
+					{{#if isLastName}}
+					<button
+					type="submit"
+					class="btn btn-primary search-patient"
+				>
+					Search
+				</button>
+				<button class="btn btn-secondary reset">Reset</button>
+				
+				{{else}}
+				{{#if isUnique}}
+					<button
+					type="submit"
+					class="btn btn-primary search-patient"
+				>
+					Search
+				</button>
+				<button class="btn btn-secondary reset">Reset</button>
+				{{else}}
+				<button
+					type="submit"
+					class="btn btn-primary search-patient"
+					disabled
+				>
+					Search
+				</button>
+				<button class="btn btn-secondary reset" disabled>Reset</button>
+				{{/if}}
+				{{/if}}
+				</div>
+				</div>
+
+			</form>
+		</div>
+		  </div>
+		</div>
+	</div>
+</template>

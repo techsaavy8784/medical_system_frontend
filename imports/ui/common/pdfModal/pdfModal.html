@@ -1,0 +1,27 @@
+<template name="pdfModal">
+    <div class="modal fade" id="docPdfModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Show PDF</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{#if emptyPdfData}}
+                        <h5>There is no data available to display pdf</h5>
+                    {{else}}
+                        <iframe
+                                src="{{pdfDataUrl}}"
+                                width="100%"
+                                height="700"
+                                frameborder="0"
+                        ></iframe>
+                    {{/if}}
+                </div>
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+</template>

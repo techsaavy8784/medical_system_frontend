@@ -1,0 +1,21 @@
+<template name="patientMatchModal">
+    <div class="modal" tabindex="-1" role="dialog" id="patientMatchModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{patientMatchModalTitle}}?</h5>
+                </div>
+                <div class="modal-body">
+                    {{#each values}}
+                        <p class="text-danger">{{text}}</p>
+                        {{{separator @index}}}
+                    {{/each}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger override-changes">Override</button>
+                    <button type="button" class="btn btn-secondary cancel-match-modal" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
